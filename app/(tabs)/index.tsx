@@ -1,98 +1,135 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      
+      <ThemedView style={styles.mainContent}>
+        
+        <ThemedView style={styles.titleContainer}>
+          <ThemedText type="title" style={styles.orangeText}>Portal dos Gatos </ThemedText>
+        </ThemedView>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
+        <ThemedView style={styles.galeriaContainer}>
+          <Image source={require('@/assets/images/gato1.jpg')} style={styles.fotoPena} contentFit="cover" />
+          <Image source={require('@/assets/images/gato2.jpg')} style={styles.fotoPena} contentFit="cover" />
+          <Image source={require('@/assets/images/gato3.jpg')} style={styles.fotoPena} contentFit="cover" />
+        </ThemedView>
+
+        <ThemedView style={styles.stepContainer}>
+          <ThemedText type="subtitle" style={styles.cardTitle}>Adote um Amigo</ThemedText>
+          <ThemedText style={styles.bodyText}>
+            Gatos laranjas são conhecidos por serem extremamente carinhosos, brincalhões e cheios de energia!
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.stepContainer}>
+          <ThemedText type="subtitle" style={styles.cardTitle}>Curiosidades Felinas</ThemedText>
+          <ThemedText style={styles.bodyText}>
+            Você sabia que cerca de 80% dos gatos laranjas são machos? Isso acontece devido à genética da cor da pelagem!
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.stepContainer}>
+          <ThemedText type="subtitle" style={styles.cardTitle}>A Marca do {"\""}M{"\""}</ThemedText>
+          <ThemedText style={styles.bodyText}>
+            Quase todos os gatos laranjas possuem uma marcação em formato da letra {"\""}M{"\""} bem clara na testa. Isso faz parte do padrão de pelagem chamado Tabby.
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.stepContainer}>
+          <ThemedText type="subtitle" style={styles.cardTitle}>Sardinhas Charmosas</ThemedText>
+          <ThemedText style={styles.bodyText}>
+            É muito comum que esses gatinhos desenvolvam pequenas sardas pretas no nariz e nas gengivas ao longo da vida, o que é totalmente inofensivo.
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.stepContainer}>
+          <ThemedText type="subtitle" style={styles.cardTitle}>Fama nas Telas</ThemedText>
+          <ThemedText style={styles.bodyText}>
+            Eles dominam a cultura pop! Personagens icônicos como o Garfield, o Gato de Botas e o Jonesy (do filme Alien) são inspirados na personalidade marcante dos felinos laranjas.
+          </ThemedText>
+        </ThemedView>
+
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0D0E10',
+  },
+  contentContainer: {
+    paddingVertical: 40,
+  },
+  mainContent: {
+    paddingHorizontal: 16,
+    backgroundColor: 'transparent',
+  },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
+    gap: 10,
+    marginBottom: 28,
+    backgroundColor: 'transparent',
+  },
+  galeriaContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 32,
+    backgroundColor: 'transparent',
+    width: '100%',
+  },
+  fotoPena: {
+    width: 208,
+    height: 208,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: '#FF9547',
+    shadowColor: '#FF9547',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
   },
   stepContainer: {
     gap: 8,
-    marginBottom: 8,
+    marginBottom: 16,
+    padding: 20,
+    backgroundColor: '#16171B',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#22242B',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  cardTitle: {
+    color: '#FF9547',
+    fontSize: 18,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+  },
+  bodyText: {
+    color: '#A0A5B5',
+    fontSize: 15,
+    lineHeight: 24,
+    letterSpacing: 0.2,
+  },
+  orangeText: {
+    color: '#FF9547',
+    fontWeight: 'bold',
+    fontSize: 26,
+    letterSpacing: 0.5,
   },
 });

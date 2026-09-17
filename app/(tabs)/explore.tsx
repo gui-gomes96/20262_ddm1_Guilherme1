@@ -1,8 +1,7 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -12,101 +11,107 @@ import { Fonts } from '@/constants/theme';
 export default function TabTwoScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: '#FF9547', dark: '#1A1A1E' }}
       headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
+        <ThemedView style={styles.containerDoHeader}>
+          {/* Ícone da patinha original ao fundo */}
+          <IconSymbol
+            size={260}
+            color="#26262B"
+            name="pawprint.fill"
+            style={styles.headerIcon}
+          />
+          {/* A foto do gato fixada no canto superior esquerdo do cabeçalho */}
+          <Image 
+            source={require('@/assets/images/gato4.jpg')} 
+            style={styles.fotoNoTopoEsquerdo} 
+            contentFit="cover" 
+          />
+        </ThemedView>
       }>
+
       <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
-          Explore
+          style={[styles.orangeText, { fontFamily: Fonts.rounded }]}>
+          Guia de Cuidados 📖
         </ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
+
+      <ThemedText style={styles.bodyText}>
+        Cuidar de um felino exige carinho, atenção e conhecimento. Veja abaixo as principais dicas para manter seu amigo saudável.
+      </ThemedText>
+
+      <Collapsible title="Alimentação Balanceada">
+        <ThemedText style={styles.bodyText}>
+          Ofereça ração de alta qualidade de acordo com a idade do seu gato. Gatos precisam de uma dieta rica em proteínas de origem animal.
         </ThemedText>
       </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
+
+      <Collapsible title="Hidratação Constante">
+        <ThemedText style={styles.bodyText}>
+          Felinos têm tendência a beber pouca água. Utilize fontes de água correndo e espalhe vários potes pela casa para estimulá-los.
         </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
       </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
+
+      <Collapsible title="Caixa de Areia Limpa">
+        <ThemedText style={styles.bodyText}>
+          Mantenha a caixa em local calmo e longe da comida. A regra ideal é ter o número de caixas equivalente à quantidade de gatos mais uma extra.
         </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
       </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          library to create a waving hand animation.
+
+      <Collapsible title="Estímulo e Brincadeiras">
+        <ThemedText style={styles.bodyText}>
+          Gatos laranjas amam caçar! Reserve pelo menos 15 minutos do dia para brincar com varinhas, bolinhas de papel e enriquecer o ambiente com nichos.
         </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
       </Collapsible>
+
+      <Collapsible title="Consultas ao Veterinário">
+        <ThemedText style={styles.bodyText}>
+          Mantenha as vacinas e a vermifugação em dia. Check-ups anuais são fundamentais para diagnosticar e prevenir problemas de saúde cedo.
+        </ThemedText>
+      </Collapsible>
+
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
+  containerDoHeader: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent',
+    position: 'relative',
+  },
+  headerIcon: {
+    bottom: -40,
+    alignSelf: 'center',
     position: 'absolute',
+  },
+  fotoNoTopoEsquerdo: {
+    position: 'absolute',
+    top: 30-0,
+    left: 20,
+    width: 210,
+    height: 210,
+    borderRadius: 16,
+    borderWidth: 3,
+    borderColor: '#FF9547',
   },
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+    marginBottom: 10,
+    backgroundColor: 'transparent',
+  },
+  bodyText: {
+    color: '#C4C4CC',
+    fontSize: 15,
+    lineHeight: 24,
+    marginBottom: 10,
+  },
+  orangeText: {
+    color: '#FF9547',
+    fontWeight: 'bold',
   },
 });
