@@ -1,8 +1,7 @@
 import { Image } from 'expo-image';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 
 import { Collapsible } from '@/components/ui/collapsible';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
@@ -10,35 +9,32 @@ import { Fonts } from '@/constants/theme';
 
 export default function TabTwoScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#FF9547', dark: '#1A1A1E' }}
-      headerImage={
-        <ThemedView style={styles.containerDoHeader}>
-          {/* Ícone da patinha original ao fundo */}
-          <IconSymbol
-            size={260}
-            color="#26262B"
-            name="pawprint.fill"
-            style={styles.headerIcon}
-          />
-          {/* A foto do gato fixada no canto superior esquerdo do cabeçalho */}
-          <Image 
-            source={require('@/assets/images/gato4.jpg')} 
-            style={styles.fotoNoTopoEsquerdo} 
-            contentFit="cover" 
-          />
-        </ThemedView>
-      }>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer} showsVerticalScrollIndicator={false}>
+      
+      <ThemedView style={styles.headerContainer}>
+        <IconSymbol
+          size={180}
+          color="#1D1E24"
+          name="pawprint.fill"
+          style={styles.headerIcon}
+        />
+        <Image 
+          source={require('@/assets/images/gato4.jpg')} 
+          style={styles.fotoGato} 
+          contentFit="cover" 
+        />
+      </ThemedView>
 
       <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
-          style={[styles.orangeText, { fontFamily: Fonts.rounded }]}>
-          Guia de Cuidados 📖
+          style={[styles.whiteTitleText, { fontFamily: Fonts.rounded }]}>
+          Guia de Cuidados
         </ThemedText>
+        <ThemedView style={styles.linhaLaranja} />
       </ThemedView>
 
-      <ThemedText style={styles.bodyText}>
+      <ThemedText style={styles.introText}>
         Cuidar de um felino exige carinho, atenção e conhecimento. Veja abaixo as principais dicas para manter seu amigo saudável.
       </ThemedText>
 
@@ -72,46 +68,73 @@ export default function TabTwoScreen() {
         </ThemedText>
       </Collapsible>
 
-    </ParallaxScrollView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  containerDoHeader: {
-    width: '100%',
-    height: '100%',
+  container: {
+    flex: 1,
+    backgroundColor: '#0F1013',
+  },
+  contentContainer: {
+    paddingVertical: 50,
+    paddingHorizontal: 20,
+  },
+  headerContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 24,
     backgroundColor: 'transparent',
     position: 'relative',
+    height: 180,
   },
   headerIcon: {
-    bottom: -40,
-    alignSelf: 'center',
     position: 'absolute',
+    opacity: 0.4,
+    right: 10,
+    top: -10,
   },
-  fotoNoTopoEsquerdo: {
-    position: 'absolute',
-    top: 30-0,
-    left: 20,
-    width: 210,
-    height: 210,
-    borderRadius: 16,
-    borderWidth: 3,
+  fotoGato: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    borderWidth: 2,
     borderColor: '#FF9547',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
   },
   titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
-    marginBottom: 10,
+    marginBottom: 20,
     backgroundColor: 'transparent',
+    alignSelf: 'flex-start',
+  },
+  whiteTitleText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 28,
+    letterSpacing: 0.5,
+  },
+  linhaLaranja: {
+    height: 3,
+    backgroundColor: '#FF9547',
+    marginTop: 6,
+    borderRadius: 2,
+    width: '100%',
+  },
+  introText: {
+    color: '#A4A9B8',
+    fontSize: 15,
+    lineHeight: 24,
+    marginBottom: 24,
   },
   bodyText: {
     color: '#C4C4CC',
-    fontSize: 15,
-    lineHeight: 24,
-    marginBottom: 10,
-  },
-  orangeText: {
-    color: '#FF9547',
-    fontWeight: 'bold',
+    fontSize: 14,
+    lineHeight: 22,
+    paddingTop: 4,
+    paddingBottom: 8,
   },
 });
