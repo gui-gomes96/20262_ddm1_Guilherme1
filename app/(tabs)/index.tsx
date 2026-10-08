@@ -1,4 +1,3 @@
-import { Image } from 'expo-image';
 import { StyleSheet, ScrollView } from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
@@ -11,64 +10,19 @@ export default function HomeScreen() {
       
       <ThemedView style={styles.mainContent}>
         
+
         <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title" style={styles.whiteTitleText}>Portal dos Gatos</ThemedText>
+          <ThemedText type="title" style={styles.whiteTitleText}>Portal dos Gatos Laranjas</ThemedText>
           <ThemedView style={styles.linhaLaranja} />
         </ThemedView>
 
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false} 
-          contentContainerStyle={styles.galeriaScroll}
-          style={styles.galeriaWrapper}
-        >
-          <Image source={require('@/assets/images/gato1.jpg')} style={styles.fotoPena} contentFit="cover" />
-          <Image source={require('@/assets/images/gato2.jpg')} style={styles.fotoPena} contentFit="cover" />
-          <Image source={require('@/assets/images/gato3.jpg')} style={styles.fotoPena} contentFit="cover" />
-        </ScrollView>
 
-        <ThemedView style={styles.stepContainer}>
-          <ThemedView style={styles.badge}>
-            <ThemedText type="subtitle" style={styles.cardTitle}>Adote um Amigo</ThemedText>
-          </ThemedView>
-          <ThemedText style={styles.bodyText}>
-            Gatos laranjas são conhecidos por serem extremamente carinhosos, brincalhões e cheios de energia!
+        <ThemedView style={styles.welcomeContainer}>
+          <ThemedText type="subtitle" style={styles.welcomeText}>
+            Seja Bem-vindo! <HelloWave />
           </ThemedText>
-        </ThemedView>
-
-        <ThemedView style={styles.stepContainer}>
-          <ThemedView style={styles.badge}>
-            <ThemedText type="subtitle" style={styles.cardTitle}>Curiosidades Felinas</ThemedText>
-          </ThemedView>
-          <ThemedText style={styles.bodyText}>
-            Você sabia que cerca de 80% dos gatos laranjas são machos? Isso acontece devido à genética da cor da pelagem!
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedView style={styles.stepContainer}>
-          <ThemedView style={styles.badge}>
-            <ThemedText type="subtitle" style={styles.cardTitle}>A Marca do {"\""}M{"\""}</ThemedText>
-          </ThemedView>
-          <ThemedText style={styles.bodyText}>
-            Quase todos os gatos laranjas possuem uma marcação em formato da letra {"\""}M{"\""} bem clara na testa. Isso faz parte do padrão de pelagem chamado Tabby.
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedView style={styles.stepContainer}>
-          <ThemedView style={styles.badge}>
-            <ThemedText type="subtitle" style={styles.cardTitle}>Sardinhas Charmosas</ThemedText>
-          </ThemedView>
-          <ThemedText style={styles.bodyText}>
-            É muito comum que esses gatinhos desenvolvam pequenas sardas pretas no nariz e nas gengivas ao longo da vida, o que é totalmente inofensivo.
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedView style={styles.stepContainer}>
-          <ThemedView style={styles.badge}>
-            <ThemedText type="subtitle" style={styles.cardTitle}>Fama nas Telas</ThemedText>
-          </ThemedView>
-          <ThemedText style={styles.bodyText}>
-            Eles dominam a cultura pop! Personagens icônicos como o Garfield, o Gato de Botas e o Jonesy (do filme Alien) são inspirados na personalidade marcante dos felinos laranjas.
+          <ThemedText style={styles.bodyTextTextCenter}>
+            Explore o aplicativo para descobrir guias de cuidados, dicas e muito mais para o seu felino.
           </ThemedText>
         </ThemedView>
 
@@ -83,6 +37,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#0F1013',
   },
   contentContainer: {
+    flexGrow: 1,
+    justifyContent: 'center', // Centraliza o conteúdo verticalmente na tela
     paddingVertical: 50,
   },
   mainContent: {
@@ -90,7 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   titleContainer: {
-    marginBottom: 24,
+    marginBottom: 40,
     backgroundColor: 'transparent',
     alignSelf: 'center',
     alignItems: 'center',
@@ -107,48 +63,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF9547',
     marginTop: 6,
     borderRadius: 2,
-    width: '100%',
+    width: 120, // Tamanho fixo para a linha ficar harmônica centralizada
   },
-  galeriaWrapper: {
-    marginBottom: 28,
-    marginHorizontal: -20,
-  },
-  galeriaScroll: {
-    paddingHorizontal: 20,
-    gap: 14,
-  },
-  fotoPena: {
-    width: 160,
-    height: 160,
-    borderRadius: 24,
-    borderWidth: 1.5,
-    borderColor: '#FF9547',
-  },
-  stepContainer: {
-    gap: 10,
-    marginBottom: 16,
-    padding: 20,
+  welcomeContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#17191E',
     borderRadius: 24,
+    padding: 30,
     borderWidth: 1,
     borderColor: '#252831',
-    elevation: 2,
+    gap: 12,
   },
-  badge: {
-    alignSelf: 'flex-start',
-    backgroundColor: 'rgba(255, 149, 71, 0.1)',
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 10,
-  },
-  cardTitle: {
+  welcomeText: {
     color: '#FF9547',
-    fontSize: 16,
-    fontWeight: '700',
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
-  bodyText: {
+  bodyTextTextCenter: {
     color: '#A4A9B8',
-    fontSize: 14,
-    lineHeight: 22,
+    fontSize: 16,
+    lineHeight: 24,
+    textAlign: 'center',
   },
 });
