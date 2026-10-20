@@ -25,7 +25,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="explore"
+        name="index 2"
         options={{
           title: 'Guia de cuidados',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
@@ -33,7 +33,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="index 2"
+        name="index 3"
         options={{
           title: 'Curiosidades Dos Gatos Laranjas',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
@@ -41,7 +41,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="index3"
+        name="index 4"
         options={{
           title: 'Explore 3',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
@@ -49,9 +49,9 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="index4"
+        name="index 5"
         options={{
-          title: 'Explore 4',
+          title: 'Historias',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
