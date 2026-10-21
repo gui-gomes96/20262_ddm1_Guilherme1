@@ -1,4 +1,3 @@
-
 import { StyleSheet, ScrollView, Image } from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
@@ -13,8 +12,6 @@ export default function HomeScreen() {
       showsVerticalScrollIndicator={false}
     >
       <ThemedView style={styles.mainContent}>
-
-        {/* Título estilizado */}
         <ThemedView style={styles.titleContainer}>
           <ThemedText type="title" style={styles.whiteTitleText}>
             PORTAL DOS
@@ -31,7 +28,6 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Imagem de gatos */}
         <ThemedView style={styles.imageContainer}>
           <Image
             source={require('@/assets/images/gatos.jpg')}
@@ -40,7 +36,6 @@ export default function HomeScreen() {
           />
         </ThemedView>
 
-        {/* Boas-vindas */}
         <ThemedView style={styles.welcomeContainer}>
           <ThemedText type="subtitle" style={styles.welcomeText}>
             Seja Bem-vindo! <HelloWave />
@@ -51,7 +46,6 @@ export default function HomeScreen() {
             dicas e muito mais para o seu felino.
           </ThemedText>
         </ThemedView>
-
       </ThemedView>
     </ScrollView>
   );

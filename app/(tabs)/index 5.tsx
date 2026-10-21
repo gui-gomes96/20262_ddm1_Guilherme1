@@ -1,3 +1,4 @@
+
 import { Image } from 'expo-image';
 import { ScrollView, StyleSheet } from 'react-native';
 
@@ -13,8 +14,6 @@ export default function HomeScreen() {
       showsVerticalScrollIndicator={false}
     >
       <ThemedView style={styles.mainContent}>
-
-        {/* Imagem do cabeçalho */}
         <ThemedView style={styles.headerContainer}>
           <IconSymbol
             size={190}
@@ -36,7 +35,6 @@ export default function HomeScreen() {
           </ThemedView>
         </ThemedView>
 
-        {/* Cabeçalho */}
         <ThemedView style={styles.titleContainer}>
           <ThemedText style={styles.eyebrow}>
             HISTÓRIAS FELINAS
@@ -61,7 +59,6 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Introdução */}
         <ThemedView style={styles.introCard}>
           <ThemedText style={styles.emoji}>
             🐾
@@ -84,7 +81,6 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Cabeçalho dos relatos */}
         <ThemedView style={styles.sectionHeader}>
           <ThemedText style={styles.sectionTitle}>
             Histórias especiais 🧡
@@ -95,7 +91,6 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Relato 1 */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.cardTop}>
             <ThemedView style={styles.iconContainer}>
@@ -143,7 +138,6 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Relato 2 */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.cardTop}>
             <ThemedView style={styles.iconContainer}>
@@ -193,7 +187,6 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Relato 3 */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.cardTop}>
             <ThemedView style={styles.iconContainer}>
@@ -244,7 +237,6 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Relato 4 */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.cardTop}>
             <ThemedView style={styles.iconContainer}>
@@ -294,7 +286,6 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Relato 5 */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.cardTop}>
             <ThemedView style={styles.iconContainer}>
@@ -345,7 +336,6 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Mensagem final */}
         <ThemedView style={styles.finalCard}>
           <ThemedText style={styles.finalEmoji}>
             🧡🐈
@@ -370,11 +360,9 @@ export default function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
-        {/* Rodapé */}
         <ThemedText style={styles.footer}>
           PORTAL DOS GATOS • TODA HISTÓRIA MERECE SER CONTADA 🐾
         </ThemedText>
-
       </ThemedView>
     </ScrollView>
   );
@@ -393,8 +381,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: 'transparent',
   },
-
-  // Imagem do cabeçalho
   headerContainer: {
     height: 225,
     alignItems: 'center',
@@ -433,8 +419,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '900',
   },
-
-  // Cabeçalho
   titleContainer: {
     marginBottom: 30,
     alignItems: 'center',
@@ -475,8 +459,6 @@ const styles = StyleSheet.create({
     marginTop: 12,
     lineHeight: 21,
   },
-
-  // Introdução
   introCard: {
     padding: 22,
     marginBottom: 30,
@@ -495,8 +477,6 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     lineHeight: 28,
   },
-
-  // Cabeçalho da seção
   sectionHeader: {
     marginBottom: 17,
     gap: 5,
@@ -512,8 +492,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 20,
   },
-
-  // Cartões dos relatos
   stepContainer: {
     gap: 13,
     marginBottom: 18,
@@ -572,8 +550,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 24,
   },
-
-  // Mensagem final
   finalCard: {
     padding: 23,
     marginTop: 5,
@@ -595,8 +571,6 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     textAlign: 'center',
   },
-
-  // Rodapé
   footer: {
     color: '#777D8C',
     fontSize: 10,

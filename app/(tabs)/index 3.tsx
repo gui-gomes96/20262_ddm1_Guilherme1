@@ -1,20 +1,72 @@
-
 import { Image } from 'expo-image';
-import { StyleSheet, ScrollView } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, ScrollView, Pressable } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
 
-export default function TabTwoScreen() {
+const curiosidades = [
+  {
+    nome: 'O sono dos gatos',
+    emoji: '😴',
+    descricao:
+      'Os gatos dormem muitas horas por dia, e esse tempo varia conforme a idade e o nível de atividade.',
+    dica:
+      'Ofereça um local confortável e tranquilo para seu gato descansar. Os filhotes e os gatos idosos podem precisar de ainda mais sono.',
+  },
+  {
+    nome: 'O ronronar',
+    emoji: '💗',
+    descricao:
+      'O ronronar pode indicar relaxamento, mas também pode acontecer quando o gato sente estresse ou desconforto.',
+    dica:
+      'Observe a postura, as orelhas e o comportamento do seu gato para entender melhor como ele está se sentindo.',
+  },
+  {
+    nome: 'Bigodes especiais',
+    emoji: '🐱',
+    descricao:
+      'Os bigodes ajudam os gatos a perceber objetos próximos e mudanças no ambiente ao seu redor.',
+    dica:
+      'Nunca corte os bigodes do seu gato. Eles são importantes para sua percepção espacial e orientação.',
+  },
+  {
+    nome: 'Visão noturna',
+    emoji: '🌙',
+    descricao:
+      'Os gatos enxergam melhor que os humanos em ambientes com pouca luz, mas não enxergam na escuridão total.',
+    dica:
+      'Mantenha os caminhos livres de objetos perigosos, especialmente em locais com pouca iluminação.',
+  },
+  {
+    nome: 'A linguagem da cauda',
+    emoji: '🐈',
+    descricao:
+      'A posição e os movimentos da cauda podem revelar como o gato está se sentindo.',
+    dica:
+      'Uma cauda erguida pode indicar uma aproximação amigável. Movimentos fortes e rápidos podem indicar agitação. Observe também o restante do corpo.',
+  },
+  {
+    nome: 'A paixão por caixas',
+    emoji: '📦',
+    descricao:
+      'Muitos gatos gostam de caixas porque elas oferecem abrigo, segurança e um bom lugar para observar o ambiente.',
+    dica:
+      'Ofereça caixas limpas e seguras, sem grampos ou partes que possam machucar seu felino.',
+  },
+];
+
+export default function CuriosidadesScreen() {
+  const [aberto, setAberto] = useState<number | null>(null);
+
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
       showsVerticalScrollIndicator={false}
     >
-      {/* Cabeçalho com imagem */}
       <ThemedView style={styles.headerContainer}>
         <IconSymbol
           size={190}
@@ -26,7 +78,8 @@ export default function TabTwoScreen() {
         <Image
           source={require('@/assets/images/gato6.png')}
           style={styles.fotoGato}
-          contentFit="cover"
+          contentFit="contain"
+          transition={200}
         />
 
         <ThemedView style={styles.imageBadge}>
@@ -36,7 +89,6 @@ export default function TabTwoScreen() {
         </ThemedView>
       </ThemedView>
 
-      {/* Título */}
       <ThemedView style={styles.titleContainer}>
         <ThemedText style={styles.eyebrow}>
           VOCÊ SABIA?
@@ -52,166 +104,116 @@ export default function TabTwoScreen() {
           Curiosidades
           {'\n'}
           <ThemedText style={styles.orangeTitle}>
-            Felinas
+            sobre os Gatos
           </ThemedText>
         </ThemedText>
 
         <ThemedView style={styles.linhaLaranja} />
 
         <ThemedText style={styles.subtitle}>
-          Descubra os segredos dos gatos laranjas 🧡
+          Descubra fatos incríveis sobre os felinos
         </ThemedText>
       </ThemedView>
 
-      {/* Introdução */}
       <ThemedView style={styles.introCard}>
         <ThemedText style={styles.introEmoji}>
-          🐱
+          🧡
         </ThemedText>
 
         <ThemedText style={styles.introTitle}>
-          Os laranjinhas são especiais!
+          O mundo dos gatos é incrível!
         </ThemedText>
 
         <ThemedText style={styles.introText}>
-          Conhecidos por sua aparência marcante, os gatos
-          laranjas conquistam muitas pessoas. Descubra fatos
-          curiosos sobre sua genética, suas características
-          e sua presença na cultura pop!
+          Os gatos possuem sentidos especiais e comportamentos
+          surpreendentes. Confira nossas curiosidades e conheça
+          melhor esses companheiros tão especiais.
         </ThemedText>
       </ThemedView>
 
-      {/* Título das curiosidades */}
       <ThemedView style={styles.sectionHeader}>
         <ThemedText style={styles.sectionTitle}>
-          Curiosidades incríveis 🐾
+          Curiosidades felinas
         </ThemedText>
 
         <ThemedText style={styles.sectionSubtitle}>
-          Conheça melhor esses companheiros de quatro patas.
+          Toque em cada tópico para descobrir mais.
         </ThemedText>
       </ThemedView>
 
-      {/* Curiosidade 1 */}
-      <ThemedView style={styles.curiosidadeCard}>
-        <ThemedView style={styles.curiosidadeIcon}>
-          <ThemedText style={styles.curiosidadeEmoji}>
-            🧬
-          </ThemedText>
+      {curiosidades.map((item, index) => (
+        <ThemedView key={item.nome} style={styles.curiosidadeCard}>
+          <ThemedView style={styles.curiosidadeIcon}>
+            <ThemedText style={styles.curiosidadeEmoji}>
+              {item.emoji}
+            </ThemedText>
+          </ThemedView>
+
+          <ThemedView style={styles.curiosidadeContent}>
+            <ThemedText style={styles.cardTitle}>
+              {item.nome}
+            </ThemedText>
+
+            <ThemedText style={styles.bodyText}>
+              {item.descricao}
+            </ThemedText>
+
+            {aberto === index && (
+              <ThemedView style={styles.dicaCard}>
+                <ThemedText style={styles.dicaTitulo}>
+                  💡 Você sabia?
+                </ThemedText>
+
+                <ThemedText style={styles.dicaTexto}>
+                  {item.dica}
+                </ThemedText>
+              </ThemedView>
+            )}
+
+            <Pressable
+              style={styles.botao}
+              onPress={() =>
+                setAberto(aberto === index ? null : index)
+              }
+              accessibilityRole="button"
+              accessibilityLabel={
+                aberto === index
+                  ? `Ocultar curiosidade sobre ${item.nome}`
+                  : `Descobrir mais sobre ${item.nome}`
+              }
+            >
+              <ThemedText style={styles.botaoTexto}>
+                {aberto === index
+                  ? 'Mostrar menos'
+                  : 'Descobrir mais'}
+              </ThemedText>
+
+              <ThemedText style={styles.botaoIcone}>
+                {aberto === index ? '−' : '+'}
+              </ThemedText>
+            </Pressable>
+          </ThemedView>
         </ThemedView>
+      ))}
 
-        <ThemedView style={styles.curiosidadeContent}>
-          <ThemedText style={styles.cardTitle}>
-            Curiosidades Felinas
-          </ThemedText>
-
-          <ThemedText style={styles.bodyText}>
-            Aproximadamente quatro em cada cinco gatos
-            laranjas são machos. Isso acontece por causa
-            da genética: o gene responsável pela coloração
-            laranja está relacionado ao cromossomo X.
-          </ThemedText>
-        </ThemedView>
-      </ThemedView>
-
-      {/* Curiosidade 2 */}
-      <ThemedView style={styles.curiosidadeCard}>
-
-
-        <ThemedView style={styles.curiosidadeContent}>
-          <ThemedText style={styles.cardTitle}>
-            🐾 A Marca do M
-          </ThemedText>
-
-          <ThemedText style={styles.bodyText}>
-            Muitos gatos laranjas apresentam um desenho
-            parecido com a letra M na testa. Essa marca faz
-            parte do padrão de pelagem conhecido como tabby,
-            que também aparece em gatos de outras cores.
-          </ThemedText>
-        </ThemedView>
-      </ThemedView>
-
-      {/* Curiosidade 3 */}
-      <ThemedView style={styles.curiosidadeCard}>
-
-        <ThemedView style={styles.curiosidadeContent}>
-          <ThemedText style={styles.cardTitle}>
-            🧡 Sardinhas Charmosas
-          </ThemedText>
-
-          <ThemedText style={styles.bodyText}>
-            Alguns gatos, principalmente os de pelagem
-            laranja, desenvolvem pequenas manchas escuras
-            no nariz, nos lábios e nas gengivas. Elas podem
-            ser causadas pela pigmentação natural chamada
-            lentigo.
-          </ThemedText>
-        </ThemedView>
-      </ThemedView>
-
-      {/* Curiosidade 4 */}
-      <ThemedView style={styles.curiosidadeCard}>
-
-        <ThemedView style={styles.curiosidadeContent}>
-          <ThemedText style={styles.cardTitle}>
-            🎬 Fama nas Telas
-          </ThemedText>
-
-          <ThemedText style={styles.bodyText}>
-            Os gatos laranjas também fazem sucesso na
-            cultura pop! Garfield, o Gato de Botas e Jonesy,
-            da franquia Alien, são exemplos de felinos
-            famosos que conquistaram o público em filmes
-            e animações.
-          </ThemedText>
-        </ThemedView>
-      </ThemedView>
-
-      {/* Curiosidade 5 */}
-      <ThemedView style={styles.curiosidadeCard}>
-        <ThemedView style={styles.curiosidadeIcon}>
-          <ThemedText style={styles.curiosidadeEmoji}>
-            🏡
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedView style={styles.curiosidadeContent}>
-          <ThemedText style={styles.cardTitle}>
-            Adote um Amigo
-          </ThemedText>
-
-          <ThemedText style={styles.bodyText}>
-            Gatos laranjas podem ser carinhosos, brincalhões
-            e cheios de energia. Porém, cada gato tem sua
-            própria personalidade. A adoção responsável
-            oferece a eles a oportunidade de ter um lar
-            seguro, com carinho e proteção.
-          </ThemedText>
-        </ThemedView>
-      </ThemedView>
-
-      {/* Mensagem final */}
       <ThemedView style={styles.finalCard}>
         <ThemedText style={styles.finalEmoji}>
           🧡🐈
         </ThemedText>
 
         <ThemedText style={styles.finalTitle}>
-          Cada gato é único!
+          Sempre há algo novo para aprender!
         </ThemedText>
 
         <ThemedText style={styles.finalText}>
-          A cor da pelagem não define completamente
-          a personalidade de um gato. Cada felino tem
-          seu próprio jeito de demonstrar carinho,
-          brincar e explorar o mundo.
+          Conhecer os hábitos dos gatos ajuda a compreender
+          melhor suas necessidades e a cuidar deles com carinho,
+          atenção e responsabilidade.
         </ThemedText>
       </ThemedView>
 
-      {/* Rodapé */}
       <ThemedText style={styles.footer}>
-        PORTAL DOS GATOS • CURIOSIDADES FELINAS 🐾
+        PORTAL DOS GATOS • CURIOSIDADES FELINAS
       </ThemedText>
     </ScrollView>
   );
@@ -222,38 +224,41 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0F1013',
   },
+
   contentContainer: {
-    paddingTop: 35,
-    paddingBottom: 40,
+    paddingTop: 25,
+    paddingBottom: 35,
     paddingHorizontal: 20,
   },
 
-  // Cabeçalho
   headerContainer: {
-    height: 225,
+    height: 205,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 22,
+    marginBottom: 15,
     backgroundColor: 'transparent',
     position: 'relative',
   },
+
   headerIcon: {
     position: 'absolute',
     opacity: 0.12,
     right: 0,
     top: 0,
   },
+
   fotoGato: {
-    width: 175,
-    height: 175,
-    borderRadius: 35,
+    width: 165,
+    height: 165,
+    borderRadius: 32,
     borderWidth: 3,
     borderColor: '#FF9547',
     backgroundColor: '#202127',
   },
+
   imageBadge: {
     position: 'absolute',
-    bottom: 5,
+    bottom: 0,
     alignSelf: 'center',
     backgroundColor: '#FF9547',
     paddingHorizontal: 15,
@@ -262,18 +267,19 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: '#0F1013',
   },
+
   imageBadgeText: {
     color: '#17191E',
     fontSize: 12,
     fontWeight: '900',
   },
 
-  // Título
   titleContainer: {
     alignItems: 'center',
     marginBottom: 25,
     backgroundColor: 'transparent',
   },
+
   eyebrow: {
     color: '#FF9547',
     fontSize: 11,
@@ -281,25 +287,29 @@ const styles = StyleSheet.create({
     letterSpacing: 4,
     marginBottom: 8,
   },
+
   whiteTitleText: {
     color: '#FFFFFF',
-    fontSize: 35,
+    fontSize: 32,
     fontWeight: '900',
-    lineHeight: 43,
+    lineHeight: 40,
     textAlign: 'center',
   },
+
   orangeTitle: {
     color: '#FF9547',
-    fontSize: 35,
+    fontSize: 32,
     fontWeight: '900',
   },
+
   linhaLaranja: {
-    width: 75,
+    width: 72,
     height: 4,
     backgroundColor: '#FF9547',
-    marginTop: 14,
+    marginTop: 13,
     borderRadius: 10,
   },
+
   subtitle: {
     color: '#A4A9B8',
     fontSize: 13,
@@ -308,62 +318,66 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 
-  // Introdução
   introCard: {
-    padding: 21,
+    padding: 20,
     marginBottom: 30,
     backgroundColor: '#211D1A',
     borderRadius: 23,
     borderWidth: 1,
     borderColor: '#573A28',
-    gap: 10,
-  },
-  introEmoji: {
-    fontSize: 30,
-  },
-  introTitle: {
-    color: '#FF9547',
-    fontSize: 19,
-    fontWeight: '900',
-  },
-  introText: {
-    color: '#C0C4D0',
-    fontSize: 14,
-    lineHeight: 23,
+    gap: 8,
   },
 
-  // Seção
+  introEmoji: {
+    fontSize: 27,
+  },
+
+  introTitle: {
+    color: '#FF9547',
+    fontSize: 18,
+    fontWeight: '900',
+  },
+
+  introText: {
+    color: '#C0C4D0',
+    fontSize: 13,
+    lineHeight: 22,
+  },
+
   sectionHeader: {
     marginBottom: 17,
     gap: 5,
     backgroundColor: 'transparent',
   },
+
   sectionTitle: {
     color: '#FFFFFF',
-    fontSize: 21,
+    fontSize: 20,
     fontWeight: '900',
   },
+
   sectionSubtitle: {
-    color: '#8E94A4',
-    fontSize: 13,
-    lineHeight: 20,
+    color: '#A4A9B8',
+    fontSize: 12,
+    lineHeight: 19,
   },
 
-  // Cartões de curiosidades
   curiosidadeCard: {
-    flexDirection: 'column',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     gap: 12,
-    padding: 15,
-    marginBottom: 14,
+    padding: 14,
+    marginBottom: 13,
     backgroundColor: '#17191E',
     borderWidth: 1,
     borderColor: '#292C35',
     borderRadius: 22,
     elevation: 2,
   },
+
   curiosidadeIcon: {
-    width: 45,
-    height: 45,
+    width: 44,
+    height: 44,
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
@@ -371,61 +385,108 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255,149,71,0.25)',
   },
+
   curiosidadeEmoji: {
-    fontSize: 22,
+    fontSize: 21,
   },
+
   curiosidadeContent: {
+    flex: 1,
+    minWidth: 0,
     backgroundColor: 'transparent',
   },
+
   cardTitle: {
     color: '#FF9547',
     fontSize: 16,
     fontWeight: '800',
-    marginBottom: 6,
-  },
-  bodyText: {
-    color: '#C0C4D0',
-    fontSize: 14,
-    lineHeight: 23,
-  },
-  fotoCuriosidade: {
-    width: '100%',
-    height: 185,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#3A302A',
-    backgroundColor: '#202127',
+    marginBottom: 7,
   },
 
-  // Mensagem final
+  bodyText: {
+    color: '#C0C4D0',
+    fontSize: 13,
+    lineHeight: 21,
+  },
+
+  dicaCard: {
+    marginTop: 12,
+    padding: 12,
+    gap: 7,
+    backgroundColor: '#211D1A',
+    borderLeftWidth: 3,
+    borderLeftColor: '#FF9547',
+    borderRadius: 10,
+  },
+
+  dicaTitulo: {
+    color: '#FF9547',
+    fontSize: 13,
+    fontWeight: '900',
+  },
+
+  dicaTexto: {
+    color: '#C0C4D0',
+    fontSize: 12,
+    lineHeight: 21,
+  },
+
+  botao: {
+    marginTop: 12,
+    minHeight: 40,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,149,71,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,149,71,0.35)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  botaoTexto: {
+    color: '#FF9547',
+    fontSize: 12,
+    fontWeight: '800',
+  },
+
+  botaoIcone: {
+    color: '#FF9547',
+    fontSize: 20,
+    fontWeight: '800',
+  },
+
   finalCard: {
     alignItems: 'center',
-    padding: 23,
-    marginTop: 14,
+    padding: 22,
+    marginTop: 12,
     marginBottom: 22,
     gap: 12,
     backgroundColor: '#211D1A',
     borderWidth: 1,
-    borderColor: '#FF9547',
+    borderColor: '#573A28',
     borderRadius: 24,
   },
+
   finalEmoji: {
-    fontSize: 35,
+    fontSize: 32,
   },
+
   finalTitle: {
     color: '#FF9547',
-    fontSize: 20,
+    fontSize: 19,
     fontWeight: '900',
     textAlign: 'center',
   },
+
   finalText: {
     color: '#C0C4D0',
-    fontSize: 14,
-    lineHeight: 23,
+    fontSize: 13,
+    lineHeight: 22,
     textAlign: 'center',
   },
 
-  // Rodapé
   footer: {
     color: '#777D8C',
     fontSize: 10,
